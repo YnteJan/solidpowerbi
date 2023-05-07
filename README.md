@@ -4,4 +4,6 @@ Power bi files
 
 Datafile: carsalesdata.xlsx
 
-Datedimsnion: datedimension.txt
+Datedimension: datedimension.txt
+
+Excersise: Power BI Excersises UK.pdf
