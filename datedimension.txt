@@ -17,5 +17,11 @@ CALENDAR (DATE(2000,1,1), DATE(2025,12,31)),
 "Weeknum1", weeknum([date],1),
 "IsoWeeknum2", weeknum([date],2),
 "YearWeek21", FORMAT ( [Date], "YYYY" ) & "/W" &  weeknum([date],21),
-"YearWeek21Number", FORMAT ( [Date], "YYYY" ) &  format(weeknum([date],21),"00")
+"YearWeek21Number", FORMAT ( [Date], "YYYY" ) &  format(weeknum([date],21),"00"),
+"YearWeek21_correct", SWITCH(TRUE(),
+        MONTH([Date]) = 1 && WEEKNUM([Date], 21) in {52,53}, YEAR([Date]) - 1 & "-" & WEEKNUM([Date], 21),
+        MONTH([Date]) = 12 && WEEKNUM([Date], 21) = 1, YEAR([Date]) + 1 & "-0" & WEEKNUM([Date], 21),
+        len(WEEKNUM([Date], 21)) < 2, YEAR([Date]) & "-0" & WEEKNUM([Date], 21),
+        YEAR([Date]) & "-" & WEEKNUM([Date], 21)
+        )
 )
